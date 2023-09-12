@@ -16,10 +16,10 @@ app.secret_key = "Replace me with a real secret key for production use"
 
 
 
-# with open("C:\\Users\\Nicola.Mitchell\\OneDrive - LifeScientific\\Desktop\\UCD\\3-Python\\Unit12\\ProjectManager\\data\\C:\\Users\\Nicola.Mitchell\\OneDrive - LifeScientific\\Desktop\\UCD\\3-Python\\Unit12\\ProjectManager\\data\\projects.json", 'r') as f:
+# with open("C:\\Users\\Nicola.Mitchell\\OneDrive - LifeScientific\\Desktop\\UCD\\3-Python\\Unit12\\ProjectManager\\data\\data\projects.json", 'r') as f:
 #     data = json.load(f)
 
-# with open("C:\\Users\\Nicola.Mitchell\\OneDrive - LifeScientific\\Desktop\\UCD\\3-Python\\Unit12\\ProjectManager\\data\\C:\\Users\\Nicola.Mitchell\\OneDrive - LifeScientific\\Desktop\\UCD\\3-Python\\Unit12\\ProjectManager\\data\\projects.json", 'w') as f:
+# with open("C:\\Users\\Nicola.Mitchell\\OneDrive - LifeScientific\\Desktop\\UCD\\3-Python\\Unit12\\ProjectManager\\data\\data\projects.json", 'w') as f:
 #     json.dump(data, f)
 
    
@@ -101,7 +101,7 @@ def logout():
 @app.route('/dashboard')
 def dashboard():
     try:
-        with open("C:\\Users\\Nicola.Mitchell\\OneDrive - LifeScientific\\Desktop\\UCD\\3-Python\\Unit12\\ProjectManager\\data\\projects.json", 'r') as f:
+        with open("data\projects.json", 'r') as f:
             local_data = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return "Error loading project data", 500
@@ -117,7 +117,7 @@ def dashboard():
 @app.route('/project/<project_id>')
 def project_page(project_id):
     try:
-        with open("C:\\Users\\Nicola.Mitchell\\OneDrive - LifeScientific\\Desktop\\UCD\\3-Python\\Unit12\\ProjectManager\\data\\projects.json", 'r') as f:
+        with open("data\projects.json", 'r') as f:
             local_data = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return "Error loading project data", 500
