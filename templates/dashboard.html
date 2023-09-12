@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+
+<h1>Project Dashboard</h1>
+
+    <!-- Button to create a new project -->
+    <button id="newProject">New Project</button>
+
+    <!-- Table of projects -->
+    <table>
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Total Tasks</th>
+                <th>Completed Tasks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td><a href="{{ url_for('project_page', project_id=project.id) }}">{{ project.name }}</a></td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.total_tasks }}</td>
+                <td>{{ project.completed_tasks }}</td>
+                <td><button class="deleteProject" data-project-id="{{ project.id }}">Delete</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
+
+
+
+
+

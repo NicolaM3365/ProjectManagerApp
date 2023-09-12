@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+{% if session['username'] %}
+<p class="fs-5">Hi {{ session['username'] }}! Enjoy the site and <a href="{{ url_for('logout') }}">log out</a> when
+  you're done.</p>
+{% else %}
+<p class="fs-5">Welcome, would you like to <a href="{{ url_for('login') }}">log in?</a></p>
+
+{% endif %}
+
+<!-- {% if user_avatar %}
+  <img src="{{ user_avatar }}" alt="User Avatar">
+{% endif %} -->
+
+{% if avatar_url %}
+<img src="{{ avatar_url }}" alt="User Avatar">
+{% else %}
+<!-- User not logged in; show a default avatar or none -->
+{% endif %}
+
+
+
+<h1>Welcome to Project Manager! Home </h1>
+
+
+{% endblock %}
