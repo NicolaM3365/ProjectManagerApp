@@ -22,11 +22,11 @@
         <tbody>
             {% for project in projects %}
             <tr>
-                <td><a href="{{ url_for('project_page', project_id=project.id) }}">{{ project.name }}</a></td>
+                <td><a href="{{ url_for('project_page', project_id=project.project_id) }}">{{ project.name }}</a></td>
                 <td>{{ project.description }}</td>
                 <td>{{ project.total_tasks }}</td>
                 <td>{{ project.completed_tasks }}</td>
-                <td><button class="deleteProject" data-project-id="{{ project.id }}">Delete</button></td>
+                <td><button class="deleteProject" data-project-id="{{ project.project_id }}">Delete</button></td>
             </tr>
             {% endfor %}
         </tbody>

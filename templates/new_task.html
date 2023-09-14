@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block main %}
+
+<h1>Create a New Task for Project {{ project_id }}</h1>
+
+<form action="/new_task/{{ project_id }}" method="post">
+    <label for="id">Task ID:</label>
+    <input type="text" id="id" placeholder="id to be autopopulated" value="{{ next_task_id }}" readonly>
+    <br>
+    <label for="name">Task Name:</label>
+    <input type="text" id="name" name="name">
+    <br>
+    <label for="description">Task Description:</label>
+    <textarea id="description" name="description"></textarea>
+    <br>
+    <label for="status">Task Status:</label>
+    <select id="status" name="status">
+        <option value="On hold">On hold</option>
+        <option value="In progress">In progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Awaiting Response">Awaiting Response</option>
+    </select>
+    <br>
+    <button type="submit">Create Task</button>
+</form>
+
+{% endblock %}

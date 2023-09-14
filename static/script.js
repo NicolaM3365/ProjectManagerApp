@@ -84,3 +84,31 @@ document.addEventListener('click', event => {
 window.addEventListener('DOMContentLoaded', () => {
     renderTasks();
 });
+
+
+
+"""included below is the code for the server side"""
+
+async function deleteTask(id) {
+    // Delete from the client-side data model first (for immediate UI update)
+    const index = project.tasks.findIndex(t => t.id === id);
+    if (index > -1) {
+        project.tasks.splice(index, 1);
+        renderTasks();
+    }
+
+    // Then notify the server to delete it permanently from JSON
+    const response = await fetch(`/api/delete_task/${id}`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        console.log("Task deleted successfully on server");
+    } else {
+        console.log("Failed to delete task on server");
+    }
+}
+
+
+
+

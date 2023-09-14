@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ project.name }}</title>
-    <!-- Link to CSS, JS, and other assets -->
-</head>
-<body>
+
+{% extends "base.html" %}
+{% block main %}
+
+
+
     <h1>{{ project.name }}</h1>
     <p>{{ project.description }}</p>
 
@@ -44,8 +41,7 @@
         </tbody>
     </table>
 
-    <script>
-    // JS code for interactivity, like deleting tasks or opening the "New Task" modal.
-    </script>
-</body>
-</html>
+    {% include "new_task.html" %}
+    {% include "task_modal.html" %}
+    {% include "delete_modal.html" %}
+{% endblock %}
