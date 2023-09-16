@@ -114,7 +114,7 @@ def dashboard():
         return redirect(url_for('login'))
 
 # Project page
-@app.route('/project/<project_id>')
+@app.route('/project/<int:project_id>')
 def project_page(project_id):
     try:
         with open("data/projects.json", 'r') as f:
@@ -122,7 +122,7 @@ def project_page(project_id):
     except (FileNotFoundError, json.JSONDecodeError):
         return "Error loading project data", 500
 
-    project = next((item for item in local_data['projects'] if str(item['project_id']) == str(project_id)), None)
+    project = next((item for item in local_data['projects'] if (item['project_id']) == (project_id)), None)
 
     
     if project is None:
@@ -140,12 +140,23 @@ def new_project():
                 local_data = json.load(f)
         except (FileNotFoundError, json.JSONDecodeError):
             return "Error loading project data", 500
+        
+        
+        # Find the largest existing project ID
+        max_id = 0
+        for project in local_data['projects']:
+            if 'project_id' in project and project['project_id'] > max_id:
+                max_id = project['project_id']
+
+        # Generate a new unique ID
+        new_project_id = max_id + 1
+
 
         new_project = {
-            "project_id": request.form.get('project_id'),
+            "project_id": new_project_id,
             "name": request.form.get('name'),
             "description": request.form.get('description'),
-            "tasks": []
+            
         }
 
         local_data['projects'].append(new_project)
@@ -161,9 +172,7 @@ def new_project():
 
 
 
-
-
-@app.route('/new_task/<project_id>', methods=['GET', 'POST'])
+@app.route('/new_task/<int:project_id>', methods=['GET', 'POST'])
 def new_task(project_id):
     if request.method == 'POST':
         try:
@@ -172,14 +181,14 @@ def new_task(project_id):
         except (FileNotFoundError, json.JSONDecodeError):
             return "Error loading project data", 500
         
-        project = next((item for item in local_data['projects'] if str(item['project_id']) == str(project_id)), None)
+        project = next((item for item in local_data['projects'] if (item['project_id']) == (project_id)), None)
 
         if project is None:
             return redirect(url_for('dashboard'))
         
          # Calculate the next task_id
         if project['tasks']:
-            next_task_id = max(task['task_id'] for task in project['tasks']) + 1
+            next_task_id = max(int(task['task_id']) for task in project['tasks']) + 1
         else:
             next_task_id = 1  # First task in the project
 
@@ -198,32 +207,59 @@ def new_task(project_id):
         return redirect(url_for('project_page', project_id=project_id))
     else:
         return render_template('new_task.html', project_id=project_id)
-
+        
 """ deleteTask() - deletes a task from a project"""
- 
-@app.route('/api/delete_task/<task_id>', methods=['DELETE'])
-def delete_task(task_id):
+
+@app.route('/delete_task/<int:project_id>/<int:task_id>', methods=['POST'])
+def delete_task(project_id, task_id):
     try:
         with open("data/projects.json", 'r') as f:
             local_data = json.load(f)
     
-        
-        # Assuming each task has a unique id across all projects
         for project in local_data['projects']:
-            task_to_remove = next((item for item in project['tasks'] if str(item['task_id']) == str(task_id)), None)
-
-
-            if task_to_remove:
-                project['tasks'].remove(task_to_remove)
-                break
+            if project['project_id'] == project_id:
+                task_to_remove = next((item for item in project['tasks'] if item['task_id'] == task_id), None)
+                if task_to_remove:
+                    project['tasks'].remove(task_to_remove)
+                    break
 
         with open("data/projects.json", 'w') as f:
             json.dump(local_data, f)
 
-        return jsonify({'message': 'Task deleted successfully'}), 200
-
+        return redirect(url_for('dashboard'))  # Assuming 'dashboard' is the function name for the dashboard route
     except (FileNotFoundError, json.JSONDecodeError):
-        return jsonify({'error': 'Failed to delete task'}), 500
+        return redirect(url_for('error_route'))  # Assuming 'error_route' is the function name for the error page
+
+
+@app.route('/find_and_edit_task/<int:task_id>', methods=['GET'])
+
+def find_and_edit_task(local_data, project_id, task_id, new_task_data):
+    project_to_edit = None
+    task_to_edit = None
+
+    # Locate the project using project_id
+    project_to_edit = next((project for project in local_data['projects'] if project['project_id'] == project_id), None)
+
+    if not project_to_edit:
+        return "Project not found"
+
+    # Locate the task within that project using task_id
+    task_to_edit = next((task for task in project_to_edit['tasks'] if task['task_id'] == task_id), None)
+
+    if not task_to_edit:
+        return "Task not found within the specified project"
+
+    # Update the task data
+    for key, value in new_task_data.items():
+        task_to_edit[key] = value
+
+    return "Task updated successfully"
+
+
+
+
+
+
 
 
 if __name__ == '__main__':

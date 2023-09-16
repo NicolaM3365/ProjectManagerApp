@@ -1,1 +1,268 @@
-{"projects": [{"project_id": 1, "name": "Delta 100 CS", "description": "General pesticide project", "tasks": [{"task_id": 1, "title": "Resolve SYN Negotiation", "description": "SYN will not negotiate with us. Finding alternative suppliers due to isomer content.", "status": "On hold", "assigned_to": "Jane"}, {"task_id": 2, "title": "Legal Proceedings", "description": "Decision taken not to take SYN to court. Exploring other options.", "status": "Completed", "assigned_to": "Dave"}, {"task_id": null, "name": "", "description": "", "status": "On hold"}]}, {"project_id": 2, "name": "Rothio/Etco (Art. 33 with 2nd year of field trial data)", "description": "Russian Federation pesticide project", "tasks": [{"task_id": 1, "title": "Completeness Check", "description": "Completeness check received for application with 2nd year efficacy trials.", "status": "In progress", "assigned_to": "Emily"}, {"task_id": 2, "title": "TDM Feedback", "description": "Awaiting TDM feedback before deciding on the next steps for the application.", "status": "Awaiting Response", "assigned_to": "Mike"}]}, {"project_id": 3, "name": "Rothio/Etco", "description": "Czech Republic and FDR pesticide project", "tasks": [{"task_id": 1, "title": "Address FDR Evaluation", "description": "FDR had many comments on dRR. Stated efficacy unacceptable for all uses except rust on wheat.", "status": "In Review", "assigned_to": "Laura"}, {"task_id": 2, "title": "CZ Authorization", "description": "Submit ambient storage stability post-authorization in CZ.", "status": "Completed", "assigned_to": "John"}]}, {"project_id": 4, "name": "Rothio/Etco (MR from CZ)", "description": "Multi-country pesticide project", "tasks": [{"task_id": 1, "title": "PL Dossier Preparation", "description": "Dossier preparation for submission in Poland. Submission expected in early July 2023.", "status": "In progress", "assigned_to": "Anna"}, {"task_id": 2, "title": "HU Submission", "description": "Dossier preparation for submission in Hungary. Submission expected September 2023.", "status": "In progress", "assigned_to": "Alex"}]}]}
+{
+    "projects": [
+        {
+            "project_id": 1,
+            "name": "Delta 100 CS",
+            "description": "General pesticide project",
+            "tasks": [
+                {
+                    "task_id": 1,
+                    "name": "Resolve SYN Negotiation",
+                    "description": "SYN will not negotiate with us. Finding alternative suppliers due to isomer content.",
+                    "status": "On hold",
+                    "assigned_to": "Jane"
+                },
+                {
+                    "task_id": 2,
+                    "name": "Legal Proceedings",
+                    "description": "Decision taken not to take SYN to court. Exploring other options.",
+                    "status": "Completed",
+                    "assigned_to": "Dave"
+                },
+                {
+                    "task_id": 3,
+                    "name": "Quality Inspection",
+                    "description": "Inspecting the quality of new materials from suppliers.",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 6,
+                    "name": "Product Testing",
+                    "description": "Performing standard tests on the final product batch.",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 7,
+                    "name": "Contract Review",
+                    "description": "Reviewing new contract terms with suppliers.",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 8,
+                    "name": "Resource Allocation",
+                    "description": "test",
+                    "status": "In progress"
+                },
+                {
+                    "task_id": 9,
+                    "name": "Budget Review",
+                    "description": "Performing a mid-year budget review.",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 10,
+                    "name": "Vendor Screening",
+                    "description": "Screening new vendors for raw materials.",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 11,
+                    "name": "Customer Feedback Analysis",
+                    "description": "Analyzing feedback from customer surveys.",
+                    "status": "On hold"
+                }
+            ]
+        },
+        {
+            "project_id": 2,
+            "name": "Rothio/Etco (Art. 33 with 2nd year of field trial data)",
+            "description": "Russian Federation pesticide project",
+            "tasks": [
+                {
+                    "task_id": 1,
+                    "name": "Completeness Check",
+                    "description": "Completeness check received for application with 2nd year efficacy trials.",
+                    "status": "In progress",
+                    "assigned_to": "Emily"
+                },
+                {
+                    "task_id": 2,
+                    "name": "TDM Feedback",
+                    "description": "Awaiting TDM feedback before deciding on the next steps for the application.",
+                    "status": "Awaiting Response",
+                    "assigned_to": "Mike"
+                },
+                {
+                    "task_id": 3,
+                    "name": "",
+                    "description": "",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 4,
+                    "name": "test",
+                    "description": "",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 5,
+                    "name": "test",
+                    "description": "",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 6,
+                    "name": "",
+                    "description": "",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 7,
+                    "name": "test",
+                    "description": "test",
+                    "status": "Completed"
+                },
+                {
+                    "task_id": 8,
+                    "name": "Nicola Mary Mitchell",
+                    "description": "",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 9,
+                    "name": "Nicola Mary Mitchell",
+                    "description": "",
+                    "status": "Awaiting Response"
+                },
+                {
+                    "task_id": 10,
+                    "name": "",
+                    "description": "",
+                    "status": "On hold"
+                },
+                {
+                    "task_id": 11,
+                    "name": "Nicola Mary Mitchell",
+                    "description": "",
+                    "status": "On hold"
+                }
+            ]
+        },
+        {
+            "project_id": 3,
+            "name": "Rothio/Etco",
+            "description": "Czech Republic and FDR pesticide project",
+            "tasks": [
+                {
+                    "task_id": 1,
+                    "name": "Address FDR Evaluation",
+                    "description": "FDR had many comments on dRR. Stated efficacy unacceptable for all uses except rust on wheat.",
+                    "status": "In Review",
+                    "assigned_to": "Laura"
+                },
+                {
+                    "task_id": 2,
+                    "name": "CZ Authorization",
+                    "description": "Submit ambient storage stability post-authorization in CZ.",
+                    "status": "Completed",
+                    "assigned_to": "John"
+                },
+                {
+                    "task_id": 3,
+                    "name": "test",
+                    "description": "test",
+                    "status": "Awaiting Response"
+                }
+            ]
+        },
+        {
+            "project_id": 4,
+            "name": "Rothio/Etco (MR from CZ)",
+            "description": "Multi-country pesticide project",
+            "tasks": [
+                {
+                    "task_id": 1,
+                    "name": "PL Dossier Preparation",
+                    "description": "Dossier preparation for submission in Poland. Submission expected in early July 2023.",
+                    "status": "In progress",
+                    "assigned_to": "Anna"
+                },
+                {
+                    "task_id": 2,
+                    "name": "HU Submission",
+                    "description": "Dossier preparation for submission in Hungary. Submission expected September 2023.",
+                    "status": "In progress",
+                    "assigned_to": "Alex"
+                }
+            ]
+        },
+        {
+            "project_id": 5,
+            "name": "Rothio/Etco (MR from CZ)",
+            "description": "Multi-country pesticide project",
+            "tasks": [
+                {
+                    "task_id": 1,
+                    "name": "PL Dossier Preparation",
+                    "description": "Dossier preparation for submission in Poland. Submission expected in early July 2023.",
+                    "status": "In progress",
+                    "assigned_to": "Anna"
+                },
+                {
+                    "task_id": 2,
+                    "name": "HU Submission",
+                    "description": "Dossier preparation for submission in Hungary. Submission expected September 2023.",
+                    "status": "In progress",
+                    "assigned_to": "Alex"
+                }
+            ]
+        },
+        {
+            "project_id": 6,
+            "name": "Rothio/Etco (MR from CZ)",
+            "description": "Multi-country pesticide project",
+            "tasks": [
+                {
+                    "task_id": 1,
+                    "name": "PL Dossier Preparation",
+                    "description": "Dossier preparation for submission in Poland. Submission expected in early July 2023.",
+                    "status": "In progress",
+                    "assigned_to": "Anna"
+                },
+                {
+                    "task_id": 2,
+                    "name": "HU Submission",
+                    "description": "Dossier preparation for submission in Hungary. Submission expected September 2023.",
+                    "status": "In progress",
+                    "assigned_to": "Alex"
+                }
+            ]
+        },
+        {
+            "project_id": 7,
+            "name": "Rothio/Etco (MR from CZ)",
+            "description": "Multi-country pesticide project",
+            "tasks": [
+                {
+                    "task_id": 1,
+                    "name": "PL Dossier Preparation",
+                    "description": "Dossier preparation for submission in Poland. Submission expected in early July 2023.",
+                    "status": "In progress",
+                    "assigned_to": "Anna"
+                },
+                {
+                    "task_id": 2,
+                    "name": "HU Submission",
+                    "description": "Dossier preparation for submission in Hungary. Submission expected September 2023.",
+                    "status": "In progress",
+                    "assigned_to": "Alex"
+                }
+            ]
+        },
+        {
+            "project_id": 8,
+            "name": null,
+            "description": "test with internal task"
+        },
+        {
+            "project_id": 9,
+            "name": null,
+            "description": "test"
+        },
+        {
+            "project_id": 10,
+            "name": null,
+            "description": ""
+        }
+    ]
+}

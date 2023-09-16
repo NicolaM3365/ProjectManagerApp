@@ -1,27 +1,34 @@
 {% extends "base.html" %}
 {% block main %}
 
-<h1>Create a New Task for Project {{ project_id }}</h1>
+    <div class="container mt-5">
+        <h1 class="mb-4">Create a New Task for Project {{ project_id, project_name }}</h1>
 
-<form action="/new_task/{{ project_id }}" method="post">
-    <label for="id">Task ID:</label>
-    <input type="text" id="id" placeholder="id to be autopopulated" value="{{ next_task_id }}" readonly>
-    <br>
-    <label for="name">Task Name:</label>
-    <input type="text" id="name" name="name">
-    <br>
-    <label for="description">Task Description:</label>
-    <textarea id="description" name="description"></textarea>
-    <br>
-    <label for="status">Task Status:</label>
-    <select id="status" name="status">
-        <option value="On hold">On hold</option>
-        <option value="In progress">In progress</option>
-        <option value="Completed">Completed</option>
-        <option value="Awaiting Response">Awaiting Response</option>
-    </select>
-    <br>
-    <button type="submit">Create Task</button>
-</form>
+        <form action="/new_task/{{ project_id }}" method="post" class="mb-4">
+            <div class="form-group">
+                <label for="id">Task ID:</label>
+                <input type="text" id="id" class="form-control" placeholder="id to be autopopulated"
+                    value="{{ next_task_id }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Task Name:</label>
+                <input type="text" id="name" name="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Task Description:</label>
+                <textarea id="description" name="description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="status">Task Status:</label>
+                <select id="status" name="status" class="form-control">
+                    <option value="On hold">On hold</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Awaiting Response">Awaiting Response</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Task</button>
+        </form>
+    </div>
 
 {% endblock %}

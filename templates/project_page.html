@@ -1,47 +1,48 @@
-
 {% extends "base.html" %}
 {% block main %}
 
-
-
-    <h1>{{ project.name }}</h1>
+<div class="container mt-5">
+    <h1 class="mb-3">{{ project.name }}</h1>
     <p>{{ project.description }}</p>
 
     <!-- Button to go back to Dashboard -->
-    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mb-3">Back to Dashboard</a>
 
-    <!-- Button to create a new task -->
-    <button id="newTask">New Task</button>
+    <!-- Button to Add New Task -->
+    <a href="{{ url_for('new_task', project_id=project.project_id) }}" class="btn btn-primary mb-3" id="newTask">Add New
+        Task</a>
 
     <!-- List of tasks -->
-    <h2>Tasks</h2>
-    <table>
-        <thead>
+    <h2 class="mb-3">Tasks</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Status</th>
                 <th>Assigned To</th>
                 <th>Actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for task in project.tasks %}
             <tr>
-                <td>{{ task.title }}</td>
+                <td>{{ task.name }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.status }}</td>
                 <td>{{ task.assigned_to }}</td>
                 <td>
-                    <button class="editTask" data-task-id="{{ task.id }}">Edit</button>
-                    <button class="deleteTask" data-task-id="{{ task.id }}">Delete</button>
+                    <button class="btn btn-info editTask" data-task-id="{{ task.task_id }}">Edit</button>
+                </td>
+                <td>
+                    <form action="/delete_task/{{ project.project_id }}/{{ task.task_id }}" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    {% include "new_task.html" %}
-    {% include "task_modal.html" %}
-    {% include "delete_modal.html" %}
+</div>
 {% endblock %}
