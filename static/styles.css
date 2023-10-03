@@ -1,0 +1,10 @@
+.reduced-size {
+    width: 50%;
+    height: auto;
+}
+
+#chat-display {
+    grid-row: 3;
+    overflow-y: auto;
+    padding: 0;
+}

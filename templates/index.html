@@ -1,28 +1,37 @@
 {% extends "base.html" %}
 
 {% block main %}
+<!-- Main container to hold the content of the page -->
+<div class="container">
 
-{% if session['username'] %}
-<p class="fs-5">Hi {{ session['username'] }}! Enjoy the site and <a href="{{ url_for('logout') }}">log out</a> when
-  you're done.</p>
-{% else %}
-<p class="fs-5">Welcome, would you like to <a href="{{ url_for('login') }}">log in?</a></p>
+  <!-- Conditional Statement to check whether the user is logged in or not -->
+  {% if session['username'] %}
+  <!-- Paragraph to welcome the user and provide an option to log out -->
+  <p class="fs-5">
+    Hi {{ session['username'] }}! Enjoy the site and <a href="{{ url_for('logout') }}">log out</a> when you're done.
+  </p>
+  {% else %}
+  <!-- Paragraph to welcome the visitor and provide an option to log in -->
+  <p class="fs-5">Welcome, would you like to <a href="{{ url_for('login') }}">log in?</a></p>
+  {% endif %}
 
-{% endif %}
+  <!-- Conditional statement to check whether the avatar_url is available or not -->
+  {% if avatar_url %}
+  <!-- Image tag to display the user avatar if available -->
+  <img src="{{ avatar_url }}" alt="User Avatar" class="img-thumbnail">
+  {% else %}
+  <!-- Optional: Placeholder for default avatar or any other content when the user is not logged in -->
+  <!-- Optional: Placeholder for default avatar or any other content when the user is not logged in -->
+  <img src="static/images/Company_Logo.png" alt="Company Logo" class="img-thumbnail reduced-size">
+  {% endif %}
 
-<!-- {% if user_avatar %}
-  <img src="{{ user_avatar }}" alt="User Avatar">
-{% endif %} -->
+  <!-- Heading for the Home Page -->
+  <h1>Welcome to Project Manager!</h1>
 
-{% if avatar_url %}
-<img src="{{ avatar_url }}" alt="User Avatar">
-{% else %}
-<!-- User not logged in; show a default avatar or none -->
-{% endif %}
+  <!-- Optional: Any additional content, links, or features you want to add to the home page -->
+  <p>Explore our features, manage your projects effectively, and enhance your productivity.</p>
 
 
 
-<h1>Welcome to Project Manager! Home </h1>
-
-
+</div>
 {% endblock %}

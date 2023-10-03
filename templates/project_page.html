@@ -14,7 +14,7 @@
 
     <!-- List of tasks -->
     <h2 class="mb-3">Tasks</h2>
-    <table class="table table-bordered table-hover">
+    <table id="taskTable" class="table table-bordered table-hover">
         <thead class="thead-dark">
             <tr>
                 <th>Title</th>
@@ -32,9 +32,12 @@
                 <td>{{ task.description }}</td>
                 <td>{{ task.status }}</td>
                 <td>{{ task.assigned_to }}</td>
+
                 <td>
-                    <button class="btn btn-info editTask" data-task-id="{{ task.task_id }}">Edit</button>
+                    <a href="{{ url_for('edit_task_page', project_id=project.project_id, task_id=task.task_id) }}"
+                        class="btn btn-info">Edit</a>
                 </td>
+                <td>
                     <form action="/delete_task/{{ project.project_id }}/{{ task.task_id }}" method="post">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>

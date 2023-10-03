@@ -18,3 +18,11 @@ As a project manager, I want to be notified when a task status changes, so that 
 As a project manager or team member, I want to comment on tasks, so that I can communicate with the team without leaving the app.
 As a team member, I want to be notified when I am assigned a new task, so that I can start working on it promptly.
 As a user, I want to be able to filter tasks based on their status or assigned member, so that I can more easily find the tasks that are relevant to me.
+
+
+
+Note - the app doesnt work if i comment out - instead it must be deleted 
+ <!-- <script>
+    // This is a hack to get the previous messages from the server into the client.
+    let PREVIOUS_MESSAGES = JSON.parse('{{ messages | tojson }}');
+  </script> -->
