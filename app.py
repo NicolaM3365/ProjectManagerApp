@@ -249,11 +249,7 @@ def find_and_edit_task(local_data, project_id, task_id, new_task_data):
     if not task_to_edit:
         return "Task not found within the specified project"
 
-    # Update the task data
-    for key, value in new_task_data.items():
-        task_to_edit[key] = value
 
-    return "Task updated successfully"
 
 
 

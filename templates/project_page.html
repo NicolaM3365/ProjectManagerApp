@@ -35,7 +35,6 @@
                 <td>
                     <button class="btn btn-info editTask" data-task-id="{{ task.task_id }}">Edit</button>
                 </td>
-                <td>
                     <form action="/delete_task/{{ project.project_id }}/{{ task.task_id }}" method="post">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
