@@ -10,7 +10,7 @@ from flask_socketio import SocketIO, emit
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-import models # Importing the models module will create the database tables.
+from models import Project, Task # Importing the models module will create the database tables.
 
 
 # A secret key is needed to use sessions - it prevents users from modifying the cookie.
@@ -37,10 +37,10 @@ def gravatar_url(username, size=100, default='identicon', rating='g'):
 
 
 
-chat_log = [{"message": "Hello", "timestamp": datetime.now()}]
-chat_log.append({"message": "Hi", "timestamp": datetime.now()})
-chat_log.append({"message": "How are you?", "timestamp": datetime.now()})
-chat_log.append({"message": "I'm good thanks", "timestamp": datetime.now()})
+chat_log = [{"message": "Hello"}]
+chat_log.append({"message": "Hi"})
+chat_log.append({"message": "How are you?"})
+chat_log.append({"message": "I'm good thanks"})
 
 print(json.dumps(chat_log, default=str))  # Will print the JSON representation of chat_log to the console.
 
@@ -131,7 +131,7 @@ def logout():
     
 
 # Dashboard
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET'])
 def dashboard():
     try:
         with open("data/projects.json", 'r') as f:
@@ -139,10 +139,36 @@ def dashboard():
     except (FileNotFoundError, json.JSONDecodeError):
         return "Error loading project data", 500
 
+    # Convert the loaded JSON projects data into Project objects
+    project_objects = []
+    for project_dict in local_data['projects']:
+        tasks = project_dict.get('tasks', [])
+
+        # Convert tasks into Task objects
+        task_objects = []
+        for task_dict in tasks:
+            task = Task(
+                task_dict['task_id'],
+                task_dict['name'],
+                task_dict['description'],
+                task_dict['status'],
+                task_dict.get('assigned_to', None)  # This accounts for if 'assigned_to' is not present
+            )
+            task_objects.append(task)
+
+        # Now create the Project object
+        project = Project(
+            project_dict['project_id'], 
+            project_dict['name'], 
+            project_dict['description'], 
+            task_objects
+        )
+        project_objects.append(project)
+        
     if "username" in session:
         email = session["username"]
         avatar_url = gravatar_url(email)
-        return render_template('dashboard.html', projects=local_data['projects'], avatar_url=avatar_url)
+        return render_template('dashboard.html', projects=project_objects, avatar_url=avatar_url)
     else:
         return redirect(url_for('login'))
 
@@ -188,7 +214,7 @@ def new_project():
         new_project = {
             "project_id": new_project_id,
             "name": request.form.get('name'),
-            "description": request.form.get('description'),
+            "description": request.form.get('description')
             
         }
 
@@ -200,6 +226,31 @@ def new_project():
         return redirect(url_for('dashboard'))
     else:
         return render_template('new_project.html')
+
+
+
+
+@app.route('/delete_project/<int:project_id>', methods=['POST'])
+def delete_project_route(project_id):
+    try:
+        with open("data/projects.json", 'r') as f:
+            local_data = json.load(f)
+
+        project_to_remove = next((project for project in local_data['projects'] if project['project_id'] == project_id), None)
+        
+        if project_to_remove:
+            local_data['projects'].remove(project_to_remove)
+
+        with open("data/projects.json", 'w') as f:
+            json.dump(local_data, f)
+
+        return redirect(url_for('dashboard'))  # Assuming 'index' is your main page's route function
+
+    except (FileNotFoundError, json.JSONDecodeError):
+        return redirect(url_for('error_route'))  # Assuming 'error_route' is the function name for the error page
+
+
+
 
 
 

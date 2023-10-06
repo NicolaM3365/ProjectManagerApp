@@ -37,5 +37,4 @@ class Project:
         return len([task for task in self.tasks if task.status == "Completed"])
 
 
-
         

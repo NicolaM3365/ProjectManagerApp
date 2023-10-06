@@ -12,6 +12,7 @@
     <table class="table table-bordered table-hover">
         <thead class="thead-dark">
             <tr>
+                <th>Project Link</th>
                 <th>Project Name</th>
                 <th>Description</th>
                 <th>Total Tasks</th>
@@ -23,11 +24,15 @@
             {% for project in projects %}
             <tr>
                 <td><a href="{{ url_for('project_page', project_id=project.project_id) }}">{{ project.name }}</a></td>
+                <td>{{ project.name }}</td>
                 <td>{{ project.description }}</td>
-                <td>{{ project.total_tasks }}</td>
-                <td>{{ project.completed_tasks }}</td>
-                <td><button class="btn btn-danger deleteProject"
-                        data-project-id="{{ project.project_id }}">Delete</button></td>
+                <td>{{ project.total_tasks() }}</td>
+                <td>{{ project.completed_tasks() }}</td>
+                <td>
+                    <form action="/delete_project/{{ project.project_id }}" method="post">
+                        <button type="submit" class="btn btn-danger deleteProject">Delete</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -37,9 +42,3 @@
 
 
 {% endblock %}
-
-
-
-
-
-
