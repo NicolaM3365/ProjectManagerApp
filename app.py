@@ -37,23 +37,6 @@ def gravatar_url(username, size=100, default='identicon', rating='g'):
 
 
 
-chat_log = [{"message": "Hello"}]
-chat_log.append({"message": "Hi"})
-chat_log.append({"message": "How are you?"})
-chat_log.append({"message": "I'm good thanks"})
-
-print(json.dumps(chat_log, default=str))  # Will print the JSON representation of chat_log to the console.
-
-# @app.route('/')
-# def index():
-#     """Home page for the app."""
-#     if "username" in session:  # Check if user is logged in
-#         email = session["username"]
-#         avatar_url = gravatar_url(email)
-#         return render_template('index.html', avatar_url=avatar_url,messages=chat_log)
-#     else:
-#         return render_template('index.html')
-
 @app.route('/')
 def index():
     """Home page for the app."""
@@ -63,18 +46,6 @@ def index():
         return render_template('index.html', avatar_url=avatar_url)
     else:
         return render_template('index.html')
-
-
-@app.route('/chat')
-def chat():
-    """Chat page for the app."""
-    if chat_log:  # Ensure chat_log is not None or empty
-        serializable_log = json.dumps(chat_log, default=str)  # Ensuring chat_log is serializable
-        return render_template('chat.html', messages=serializable_log)
-    else:
-        return render_template('chat.html', messages=json.dumps([]))  # Passing an empty list if chat_log is None or empty
-
-
 
 
 @app.route("/login", methods=["GET"])
@@ -384,7 +355,14 @@ def find_and_edit_task(project_id, task_id):
 
 
 
+# Our very basic in-memory data store for all previous messages, reset on server restart
+chat_log = []
 
+
+@app.route('/chat_home')
+def chat_home():
+    """Render the main chat page"""
+    return render_template('chat.html', messages=chat_log)
 
 
 @app.route('/clear')
@@ -392,7 +370,7 @@ def clear():
     """Clear the chat log"""
     chat_log.clear()
     socketio.emit('clearChat')
-    return redirect(url_for('index'))
+    return redirect(url_for('chat_home'))
 
 
 @socketio.on('chatEvent')
@@ -400,6 +378,8 @@ def handle_message(message):
     """Process a new message and broadcast it to all users"""
     chat_log.append(message)
     emit('chatEvent', message, broadcast=True)
+
+
 
 
 if __name__ == '__main__':
