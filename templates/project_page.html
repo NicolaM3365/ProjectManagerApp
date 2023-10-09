@@ -19,7 +19,16 @@
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Status</th>
+                <th>
+                    Status
+                    <select id="statusFilter">
+                        <option value="">All</option>
+                        <option value="On hold">On hold</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Awaiting Response">Awaiting Response</option>
+                    </select>
+                </th>
                 <th>Assigned To</th>
                 <th>Actions</th>
                 <th>Actions</th>
@@ -30,7 +39,7 @@
             <tr>
                 <td>{{ task.name }}</td>
                 <td>{{ task.description }}</td>
-                <td>{{ task.status }}</td>
+                <td class="task-status" id="status_{{ loop.index }}">{{ task.status }}</td>
                 <td>{{ task.assigned_to }}</td>
 
                 <td>
