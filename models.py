@@ -1,40 +1,81 @@
 
 
-""""each project has a name, description, and owner and several tasks.
+from datetime import datetime
+
+from flask_login import UserMixin
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
+
+db = SQLAlchemy()
+
+
+
+""""each project has a name, description, and manager and several tasks.
 Each task has a description and belongs to a project.
 The owner of a project is a user."""
-"wrte a class for each of these entities"
+"write a class for each of these entities"
 
-class User:
-    def __init__(self, name, id=None):
-        self.name = name
-        self.id = id
+# class User:
+#     def __init__(self, name, id=None):
+#         self.name = name
+#         self.id = id
 
 
 
-class Task:
-    def __init__(self, task_id, name, description, status, assigned_to=None):
-        self.task_id = task_id
-        self.name = name
-        self.description = description
-        self.status = status
-        self.assigned_to = assigned_to
+#TO DO check db.Column versus db.mapped_column
+class User(UserMixin, db.Model):
+    id = db.mapped_column(db.Integer, primary_key=True)
+    username = db.mapped_column(db.String(50), unique=True)
+    # SECURITY NOTE: Don't actually store passwords like this in a real system!
+    password = db.mapped_column(db.String(80))
 
-class Project:
-    def __init__(self, project_id, name, description, tasks=None):
-        self.project_id = project_id
-        self.name = name
-        self.description = description
-        self.tasks = tasks if tasks is not None else []
+    def __str__(self):
+        return self.username
+    
 
-    def add_task(self, task):
-        self.tasks.append(task)
 
-    def total_tasks(self):
-        return len(self.tasks)
 
-    def completed_tasks(self):
-        return len([task for task in self.tasks if task.status == "Completed"])
+class Task(db.Model):
+        task_id = db.mapped_column(db.Integer, primary_key=True)
+        name = db.mapped_column(db.String(100), nullable=False)
+        description = db.mapped_column(db.String(100), nullable=False)
+        status = db.mapped_column(db.String(100), nullable=False)
+        # assigned_to = db.mapped_column(db.String(100), nullable=False)
+        created_at = db.mapped_column(db.DateTime, default=datetime.utcnow)
+        project_id = db.mapped_column(db.Integer, db.ForeignKey("project.project_id"), nullable=False)
+        project = db.relationship('Project', backref=db.backref('tasks', lazy=True))
+        managed_task_id = db.mapped_column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        managed_task = db.relationship('User', backref=db.backref('tasks', lazy=True))
+        
+        
+        def __str__(self):
+            return self.name
+        
+
+class Project(db.Model):
+        project_id = db.mapped_column(db.Integer, primary_key=True) 
+        name = db.mapped_column(db.String(100), nullable=False)
+        description = db.mapped_column(db.String(100), nullable=False)
+        status = db.mapped_column(db.String(100), nullable=False)
+        created_at = db.mapped_column(db.DateTime, default=datetime.utcnow)
+        managed_project_id = db.mapped_column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        managed_project = db.relationship('User', backref=db.backref('projects', lazy=True))
+
+        def add_task(self, task):
+            self.tasks.append(task)
+
+        def total_tasks(self):
+            return len(self.tasks)
+
+        def completed_tasks(self):
+            return len([task for task in self.tasks if task.status == "Completed"])
+        
+        @staticmethod
+        def get_project_lengths():
+            # An example of how to use raw SQL inside a model
+            sql = text("SELECT length(name) + length(description) FROM project")
+            return db.session.execute(sql).scalars().all()  # Returns just the integers
+
 
 
         

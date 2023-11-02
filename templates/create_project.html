@@ -1,9 +1,17 @@
-{% extends "base.html" %}
-{% block main %}
+{% set title = "Create Project" %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+
+
 
     <div class="container mt-5">
         <h1 class="mb-4">Create a New Project</h1>
-        <form action="/new_project" method="post">
+        <form action="{{ url_for('create_project_action') }}" method="POST">
             <div class="form-group">
                 <label for="project_id">Project ID</label>
                 <input type="text" class="form-control" id="project_id" name="project_id" placeholder="id to be autopopulated" >
@@ -16,7 +24,11 @@
                 <label for="description">Project Description</label>
                 <textarea class="form-control" id="description" name="description" rows="4"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit Project</button>
+            <div class="form-group">
+                <label for="status">Project Status</label>
+                <input type="text" class="form-control" id="status" name="status">
+            </div>
+            <button type="submit" class="btn btn-primary">Create Project</button>
         </form>
     </div>
 

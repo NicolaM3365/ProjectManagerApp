@@ -1,29 +1,40 @@
-{% extends "base.html" %}
+{% set title = "Projects" %}
 
-{% block main %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+  {% for project in projects %}
+  <li><a href="{{ url_for('project', project_id=project.project_id) }}">{{ project.name }}</a></li>
+  {% endfor %}
+</ul>
 <!-- Main container to hold the content of the page -->
 <div class="container">
 
+  
+
   <!-- Conditional Statement to check whether the user is logged in or not -->
-  {% if session['username'] %}
+  <!-- {% if session['username'] %} -->
   <!-- Paragraph to welcome the user and provide an option to log out -->
-  <p class="fs-5">
-    Hi {{ session['username'] }}! Enjoy the site and <a href="{{ url_for('logout') }}">log out</a> when you're done.
-  </p>
-  {% else %}
+  <!-- <p class="fs-5"> -->
+    <!-- Hi {{ session['username'] }}! Enjoy the site and <a href="{{ url_for('logout_page') }}">log out</a> when you're -->
+    <!-- done. -->
+  <!-- </p> -->
+  <!-- {% else %} -->
   <!-- Paragraph to welcome the visitor and provide an option to log in -->
-  <p class="fs-5">Welcome, would you like to <a href="{{ url_for('login') }}">log in?</a></p>
-  {% endif %}
+  <!-- <p class="fs-5">Welcome, would you like to <a href="{{ url_for('login_page') }}">log in?</a></p> -->
+  <!-- {% endif %} -->
 
   <!-- Conditional statement to check whether the avatar_url is available or not -->
-  {% if avatar_url %}
+  <!-- {% if avatar_url %} -->
   <!-- Image tag to display the user avatar if available -->
-  <img src="{{ avatar_url }}" alt="User Avatar" class="img-thumbnail">
-  {% else %}
+  <!-- <img src="{{ avatar_url }}" alt="User Avatar" class="img-thumbnail"> -->
+  <!-- {% else %} -->
   <!-- Optional: Placeholder for default avatar or any other content when the user is not logged in -->
   <!-- Optional: Placeholder for default avatar or any other content when the user is not logged in -->
-  <img src="static/images/Company_Logo.png" alt="Company Logo" class="img-thumbnail reduced-size">
-  {% endif %}
+  <!-- <img src="static/images/Company_Logo.png" alt="Company Logo" class="img-thumbnail reduced-size"> -->
+  <!-- {% endif %} -->
 
   <!-- Heading for the Home Page -->
   <h1>Welcome to Project Manager!</h1>

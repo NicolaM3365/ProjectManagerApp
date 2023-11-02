@@ -1,0 +1,11 @@
+{% set title = project.name %}
+{% extends 'base.html' %}
+
+{% block content %}
+    <p class="project-meta">By {{ project.managed_project_id }} (Project on {{ project.created_at.strftime('%Y-%m-%d %H:%M') }})</p>
+    <p class="project-description">{{ project.description }}</p>
+
+    {% if allow_edit %}
+        <a href="{{ url_for('edit_page', project_id=project.project_id) }}">Edit Project</a>
+    {% endif %}
+{% endblock %}

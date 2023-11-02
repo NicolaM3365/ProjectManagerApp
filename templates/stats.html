@@ -1,0 +1,16 @@
+{% set title = "Project Statistics" %}
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if projects_exist %}
+        <p>Average: {{ average_length|round(2) }} characters</p>
+        <p>Median: {{ median_length|round(2) }} characters</p>
+        <p>Maximum: {{ max_length|round(2) }} characters</p>
+        <p>Minimum: {{ min_length|round(2) }} characters</p>
+        <br>
+        <p>Total length of all projects: {{ total_length|round(2) }} characters</p>
+    {% else %}
+        <p>No projects yet!</p>
+    {% endif %}
+
+{% endblock %}
