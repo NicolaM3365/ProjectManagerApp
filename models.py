@@ -77,7 +77,7 @@ class Project(db.Model):
         @staticmethod
         def get_project_lengths():
             # An example of how to use raw SQL inside a model
-            sql = text("SELECT length(name) + length(description) FROM project")
+            sql = text("SELECT length(name) + length(description) FROM projects")
             return db.session.execute(sql).scalars().all()  # Returns just the integers
 
 

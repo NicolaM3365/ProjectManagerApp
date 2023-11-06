@@ -1,22 +1,51 @@
-Flask~=2.2
-Flask-Login~=0.6.2
-Flask-Migrate~=4.0.4
-Flask-SQLAlchemy~=3.0.5
-gunicorn~=21.2.0
-itsdangerous~=2.1.2
-Jinja2~=3.1.2
-psycopg2~=2.9.7
-SQLAlchemy~=2.0.16
-watchdog~=3.0
-Werkzeug~=2.2
-pandas~=1.3.5
-
-
-
-
-
-
-
-
-
-
+asttokens==2.2.1
+backcall==0.2.0
+blinker==1.7.0
+Bottleneck @ file:///C:/ci_311/bottleneck_1676500016583/work
+click==8.1.7
+colorama==0.4.6
+comm==0.1.4
+debugpy==1.6.7.post1
+decorator==5.1.1
+executing==1.2.0
+Flask==3.0.0
+Flask-Login==0.6.3
+Flask-SQLAlchemy==3.1.1
+greenlet==3.0.1
+ipykernel==6.25.1
+ipython==8.14.0
+itsdangerous==2.1.2
+jedi==0.19.0
+Jinja2==3.1.2
+jupyter_client==8.3.0
+jupyter_core==5.3.1
+MarkupSafe==2.1.3
+matplotlib-inline==0.1.6
+mkl-fft @ file:///C:/b/abs_19i1y8ykas/croot/mkl_fft_1695058226480/work
+mkl-random @ file:///C:/b/abs_edwkj1_o69/croot/mkl_random_1695059866750/work
+mkl-service==2.4.0
+nest-asyncio==1.5.7
+numexpr @ file:///C:/b/abs_5fucrty5dc/croot/numexpr_1696515448831/work
+numpy @ file:///C:/b/abs_9fu2cs2527/croot/numpy_and_numpy_base_1695830496596/work/dist/numpy-1.26.0-cp311-cp311-win_amd64.whl#sha256=ebb3a554edce1131a5b1b0d4afa8f980929b1226bebc4eb515ac2e29b44186d2
+packaging==23.1
+pandas @ file:///C:/b/abs_81b3npjrl8/croot/pandas_1697477219064/work/dist/pandas-2.1.1-cp311-cp311-win_amd64.whl#sha256=1732f3b07ba52119320a2b01aa09f2627f6258176e492b728daf60efb4f4d78e
+parso==0.8.3
+pickleshare==0.7.5
+platformdirs==3.10.0
+prompt-toolkit==3.0.39
+psutil==5.9.5
+pure-eval==0.2.2
+Pygments==2.16.1
+python-dateutil==2.8.2
+pytz @ file:///C:/b/abs_19q3ljkez4/croot/pytz_1695131651401/work
+pywin32==306
+pyzmq==25.1.1
+six==1.16.0
+SQLAlchemy==2.0.23
+stack-data==0.6.2
+tornado==6.3.3
+traitlets==5.9.0
+typing_extensions==4.8.0
+tzdata @ file:///croot/python-tzdata_1690578112552/work
+wcwidth==0.2.6
+Werkzeug==3.0.1
