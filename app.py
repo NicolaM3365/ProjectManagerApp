@@ -10,6 +10,9 @@ from flask_login import (
     current_user,
 )
 
+
+from sqlalchemy import func
+
 import hashlib
 
 import pandas as pd
@@ -65,12 +68,16 @@ def gravatar_url(username, size=100, default='identicon', rating='g'):
 #     else:
 #         return render_template("index.html")
 
-
-
-
 @app.route("/")
 def index():
-    return render_template("index.html", projects=Project.query.all())
+    page = request.args.get('page', 1, type=int)  # Get the page number from query parameters
+    per_page = 8  # Number of projects per page (2 rows of 4 projects)
+    projects = Project.query.paginate(page=page, per_page=per_page, error_out=False)
+    return render_template("index.html", projects=projects)
+
+# @app.route("/")
+# def index():
+#     return render_template("index.html", projects=Project.query.all())
 
 
 @app.route("/register", methods=["GET"])

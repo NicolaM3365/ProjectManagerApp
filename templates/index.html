@@ -4,7 +4,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<ul>
+<div class="container">
+  <h1>Welcome to Project Manager!</h1>
+  <p>Explore our features, manage your projects effectively, and enhance your productivity.</p>
+
+  <div class="row">
+    <!-- Loop through projects -->
+    {% for project in projects.items %}
+    <div class="col-md-3"> <!-- Adjust as per your layout -->
+      <a href="{{ url_for('project', project_id=project.project_id) }}">{{ project.name }}</a>
+    </div>
+    {% if loop.index % 4 == 0 and not loop.last %}
+  </div>
+  <div class="row">{% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Pagination Links -->
+  <nav>
+    <ul class="pagination">
+      <li class="page-item {% if not projects.has_prev %}disabled{% endif %}">
+        <a class="page-link" href="{{ url_for('index', page=projects.prev_num) }}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item {% if not projects.has_next %}disabled{% endif %}">
+        <a class="page-link" href="{{ url_for('index', page=projects.next_num) }}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</div>
+<!-- <ul>
   {% for project in projects %}
   <li><a href="{{ url_for('project', project_id=project.project_id) }}">{{ project.name }}</a></li>
   {% endfor %}
@@ -37,12 +70,12 @@
   <!-- {% endif %} -->
 
   <!-- Heading for the Home Page -->
-  <h1>Welcome to Project Manager!</h1>
+  <!-- <h1>Welcome to Project Manager!</h1> -->
 
   <!-- Optional: Any additional content, links, or features you want to add to the home page -->
-  <p>Explore our features, manage your projects effectively, and enhance your productivity.</p>
+  <!-- <p>Explore our features, manage your projects effectively, and enhance your productivity.</p> -->
 
 
 
-</div>
+</div> 
 {% endblock %}
