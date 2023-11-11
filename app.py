@@ -11,9 +11,11 @@ from flask_login import (
 )
 
 
-from sqlalchemy import func
+# from sqlalchemy import func
+import sqlalchemy
 
 import hashlib
+
 
 import pandas as pd
 import json
@@ -354,10 +356,9 @@ def load_data_to_db(json_file_path):
 if __name__ == "__main__":
     with app.app_context():
          # Use forward slashes for the file path, which work on Windows and Unix systems
-         json_file_path = 'C:/Users/Nicola.Mitchell/OneDrive - LifeScientific/Desktop/UCD/project_manager_app/ProjectManagerApp/ProjectManagerApp/data/projects.json'
+         json_file_path = 'C:/Users/Nicola.Mitchell/OneDrive - LifeScientific/Desktop/ProjectManagerApp/data/projects.json'
          load_data_to_db(json_file_path)
     app.run(debug=True)
-
 
 
 

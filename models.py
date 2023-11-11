@@ -57,7 +57,7 @@ class Task(db.Model):
 
 class Project(db.Model):
         __tablename__ = 'projects'  # specify the table name explicitly
-        project_id = db.mapped_column(db.Integer, primary_key=True) 
+        project_id = db.mapped_column(db.Integer, primary_key=True, autoincrement=True)
         name = db.mapped_column(db.String(100), nullable=False)
         description = db.mapped_column(db.String(100), nullable=False)
         status = db.mapped_column(db.String(100), nullable=False)
