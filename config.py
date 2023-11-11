@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'not-set')
 # SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
 
 # Render external connection string
-# SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://projectmanager_gasd_user:ZdTmFpnqcitBVz8wKA1M431hdytAN6yC@dpg-cl387oquuipc738907h0-a.frankfurt-postgres.render.com/projectmanager_gasd')
+SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://projectmanager2_user:JDqT7lQELj86YnVQj1iyQgZBetg4cbaV@dpg-cl7r15n6e7vc739vuu70-a.frankfurt-postgres.render.com/projectmanager2')
 
-# local connection string
-SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://postgres:N1c0laM3365@localhost/projectmanager2')
+# # local connection string
+# SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://postgres:N1c0laM3365@localhost/projectmanager2')
