@@ -1,130 +1,204 @@
 {
-    "projects": [
-      {
-        "project_id": 1,
-        "name": "Delta 100 CS",
-        "description": "General pesticide project",
-        "status": "Active",
-        "managed_project_id": 1,
-        "tasks": [
-          {
-            "task_id": 1,
-            "name": "Resolve SYN Negotiation",
-            "description": "Finding alternative suppliers due to isomer content.",
-            "status": "On hold",
-            "project_id": 1,
-            "managed_task_id": 2
-          },
-          {
-            "task_id": 2,
-            "name": "Supply Chain Analysis",
-            "description": "Analyzing the current supply chain for bottlenecks.",
-            "status": "In progress",
-            "project_id": 1,
-            "managed_task_id": 1
-          }
-        ]
-      },
-      {
-        "project_id": 2,
-        "name": "Eco Pesticide R&D",
-        "description": "Research and development of eco-friendly pesticides",
-        "status": "Pending Review",
-        "managed_project_id": 2,
-        "tasks": [
-          {
-            "task_id": 3,
-            "name": "Lab Experimentation",
-            "description": "Conducting lab tests for new eco pesticide formula.",
-            "status": "Active",
-            "project_id": 2,
-            "managed_task_id": 1
-          },
-          {
-            "task_id": 4,
-            "name": "Field Trials",
-            "description": "Organizing field trials for the developed pesticide.",
-            "status": "Scheduled",
-            "project_id": 2,
-            "managed_task_id": 2
-          }
-        ]
-      },
-      {
-        "project_id": 3,
-        "name": "Urban Farming Expansion",
-        "description": "Scaling up urban farming initiatives in metropolitan areas",
-        "status": "Initiating",
-        "managed_project_id": 1,
-        "tasks": [
-          {
-            "task_id": 5,
-            "name": "Market Research",
-            "description": "Assessing potential markets for urban farming produce.",
-            "status": "In progress",
-            "project_id": 3,
-            "managed_task_id": 2
-          },
-          {
-            "task_id": 6,
-            "name": "Community Workshops",
-            "description": "Organizing workshops to teach urban farming techniques.",
-            "status": "Planned",
-            "project_id": 3,
-            "managed_task_id": 1
-          }
-        ]
-      },
-      {
-        "project_id": 4,
-        "name": "Water Conservation Study",
-        "description": "Studying water conservation techniques in agriculture",
-        "status": "Data Collection",
-        "managed_project_id": 2,
-        "tasks": [
-          {
-            "task_id": 7,
-            "name": "Literature Review",
-            "description": "Reviewing existing literature on water-saving techniques.",
-            "status": "Completed",
-            "project_id": 4,
-            "managed_task_id": 1
-          },
-          {
-            "task_id": 8,
-            "name": "Farmer Interviews",
-            "description": "Interviewing farmers about traditional water conservation.",
-            "status": "In progress",
-            "project_id": 4,
-            "managed_task_id": 2
-          }
-        ]
-      },
-      {
-        "project_id": 5,
-        "name": "Sustainable Packaging Design",
-        "description": "Designing sustainable packaging options for our products",
-        "status": "Prototyping",
-        "managed_project_id": 1,
-        "tasks": [
-          {
-            "task_id": 9,
-            "name": "Material Research",
-            "description": "Researching biodegradable materials for packaging.",
-            "status": "Active",
-            "project_id": 5,
-            "managed_task_id": 2
-          },
-          {
-            "task_id": 10,
-            "name": "Supplier Engagement",
-            "description": "Engaging with suppliers for sustainable materials.",
-            "status": "Negotiation",
-            "project_id": 5,
-            "managed_task_id": 1
-          }
-        ]
-      }
-    ]
-  }
-  
+  "projects": [
+    {
+      "project_id": 20,
+      "name": "Delta 100 CS",
+      "description": "General pesticide project",
+      "status": "Active",
+      "managed_project_id": 1,
+      "tasks": [
+        {
+          "task_id": 1,
+          "name": "Resolve SYN Negotiation",
+          "description": "Finding alternative suppliers due to isomer content.",
+          "status": "On hold",
+          "project_id": 20,
+          "managed_task_id": 2
+        },
+        {
+          "task_id": 2,
+          "name": "Supply Chain Analysis",
+          "description": "Analyzing the current supply chain for bottlenecks.",
+          "status": "In progress",
+          "project_id": 20,
+          "managed_task_id": 1
+        }
+      ]
+    },
+    {
+      "project_id": 21,
+      "name": "Eco Pesticide R&D",
+      "description": "Research and development of eco-friendly pesticides",
+      "status": "Pending Review",
+      "managed_project_id": 2,
+      "tasks": [
+        {
+          "task_id": 3,
+          "name": "Lab Experimentation",
+          "description": "Conducting lab tests for new eco pesticide formula.",
+          "status": "Active",
+          "project_id": 21,
+          "managed_task_id": 1
+        },
+        {
+          "task_id": 4,
+          "name": "Field Trials",
+          "description": "Organizing field trials for the developed pesticide.",
+          "status": "Scheduled",
+          "project_id": 21,
+          "managed_task_id": 2
+        }
+      ]
+    },
+    {
+      "project_id": 23,
+      "name": "Urban Farming Expansion",
+      "description": "Scaling up urban farming initiatives in metropolitan areas",
+      "status": "Initiating",
+      "managed_project_id": 1,
+      "tasks": [
+        {
+          "task_id": 5,
+          "name": "Market Research",
+          "description": "Assessing potential markets for urban farming produce.",
+          "status": "In progress",
+          "project_id": 23,
+          "managed_task_id": 2
+        },
+        {
+          "task_id": 6,
+          "name": "Community Workshops",
+          "description": "Organizing workshops to teach urban farming techniques.",
+          "status": "Planned",
+          "project_id": 23,
+          "managed_task_id": 1
+        }
+      ]
+    },
+    {
+      "project_id": 24,
+      "name": "Water Conservation Study",
+      "description": "Studying water conservation techniques in agriculture",
+      "status": "Data Collection",
+      "managed_project_id": 2,
+      "tasks": [
+        {
+          "task_id": 7,
+          "name": "Literature Review",
+          "description": "Reviewing existing literature on water-saving techniques.",
+          "status": "Completed",
+          "project_id": 24,
+          "managed_task_id": 1
+        },
+        {
+          "task_id": 8,
+          "name": "Farmer Interviews",
+          "description": "Interviewing farmers about traditional water conservation.",
+          "status": "In progress",
+          "project_id": 24,
+          "managed_task_id": 2
+        }
+      ]
+    },
+    {
+      "project_id": 25,
+      "name": "Sustainable Packaging Design",
+      "description": "Designing sustainable packaging options for our products",
+      "status": "Prototyping",
+      "managed_project_id": 1,
+      "tasks": [
+        {
+          "task_id": 9,
+          "name": "Material Research",
+          "description": "Researching biodegradable materials for packaging.",
+          "status": "Active",
+          "project_id": 25,
+          "managed_task_id": 2
+        },
+        {
+          "task_id": 10,
+          "name": "Supplier Engagement",
+          "description": "Engaging with suppliers for sustainable materials.",
+          "status": "Negotiation",
+          "project_id": 25,
+          "managed_task_id": 1
+        }
+      ]
+    },
+    {
+      "project_id": 26,
+      "name": "Green City Initiative",
+      "description": "Developing sustainable urban environments",
+      "status": "Active",
+      "managed_project_id": 1,
+      "tasks": [
+        {
+          "task_id": 11,
+          "name": "Urban Planning",
+          "description": "Planning for green spaces in urban areas",
+          "status": "In Progress",
+          "project_id": 26,
+          "managed_task_id": 2
+        },
+        {
+          "task_id": 12,
+          "name": "Community Engagement",
+          "description": "Engaging with local communities for project support",
+          "status": "Planned",
+          "project_id": 26,
+          "managed_task_id": 1
+        }
+      ]
+    },
+    {
+      "project_id": 27,
+      "name": "Renewable Energy Research",
+      "description": "Researching new methods of renewable energy",
+      "status": "Pending Review",
+      "managed_project_id": 2,
+      "tasks": [
+        {
+          "task_id": 13,
+          "name": "Solar Panel Efficiency",
+          "description": "Improving the efficiency of solar panels",
+          "status": "Active",
+          "project_id": 27,
+          "managed_task_id": 1
+        },
+        {
+          "task_id": 14,
+          "name": "Wind Turbine Design",
+          "description": "Designing more efficient wind turbines",
+          "status": "On Hold",
+          "project_id": 27,
+          "managed_task_id": 2
+        }
+      ]
+    },
+    {
+      "project_id": 28,
+      "name": "Water Conservation Project",
+      "description": "Strategies for conserving water in arid regions",
+      "status": "Initiating",
+      "managed_project_id": 1,
+      "tasks": [
+        {
+          "task_id": 15,
+          "name": "Irrigation Techniques",
+          "description": "Developing efficient irrigation methods",
+          "status": "In Progress",
+          "project_id": 28,
+          "managed_task_id": 1
+        },
+        {
+          "task_id": 16,
+          "name": "Public Awareness Campaign",
+          "description": "Creating public awareness about water conservation",
+          "status": "Planned",
+          "project_id": 28,
+          "managed_task_id": 2
+        }
+      ]
+    }
+  ]
+}

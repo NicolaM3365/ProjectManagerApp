@@ -1,81 +1,49 @@
 {% set title = "Projects" %}
-
-
 {% extends 'base.html' %}
 
 {% block content %}
 <div class="container">
-  <h1>Welcome to Project Manager!</h1>
-  <p>Explore our features, manage your projects effectively, and enhance your productivity.</p>
+  <h1 class="mt-4 mb-5 text-center text-primary">Welcome to Project Manager!</h1>
+  <p class="text-secondary text-center mb-4">Explore our features, manage your projects effectively, and enhance your
+    productivity.</p>
 
-  <div class="row">
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
     <!-- Loop through projects -->
     {% for project in projects.items %}
-    <div class="col-md-3"> <!-- Adjust as per your layout -->
-      <a href="{{ url_for('project', project_id=project.project_id) }}">{{ project.name }}</a>
+    <div class="col">
+      <div class="card h-100 shadow bg-light">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">
+            <i class="fa fa-project-diagram fa-2x text-primary"></i> <!-- Example icon -->
+            <a href="{{ url_for('project', project_id=project.project_id) }}"
+              class="stretched-link text-decoration-none text-dark">{{ project.name }}</a>
+          </h5>
+          <p class="card-text">{{ project.description }}</p>
+        </div>
+        <div class="card-footer bg-white">
+          <small class="text-muted">Status: <span class="text-success">{{ project.status }}</span></small>
+        </div>
+      </div>
     </div>
-    {% if loop.index % 4 == 0 and not loop.last %}
-  </div>
-  <div class="row">{% endif %}
     {% endfor %}
   </div>
 
   <!-- Pagination Links -->
-  <nav>
-    <ul class="pagination">
+  <nav aria-label="Page navigation" class="mt-5">
+    <ul class="pagination pagination-lg justify-content-center">
       <li class="page-item {% if not projects.has_prev %}disabled{% endif %}">
         <a class="page-link" href="{{ url_for('index', page=projects.prev_num) }}" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
+          <span aria-hidden="true">&laquo; Previous</span>
         </a>
       </li>
+      <!-- Dynamically create page items here if needed -->
       <li class="page-item {% if not projects.has_next %}disabled{% endif %}">
         <a class="page-link" href="{{ url_for('index', page=projects.next_num) }}" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
+          <span aria-hidden="true">Next &raquo;</span>
         </a>
       </li>
     </ul>
   </nav>
 
 </div>
-<!-- <ul>
-  {% for project in projects %}
-  <li><a href="{{ url_for('project', project_id=project.project_id) }}">{{ project.name }}</a></li>
-  {% endfor %}
-</ul>
-<!-- Main container to hold the content of the page -->
-<div class="container">
-
-  
-
-  <!-- Conditional Statement to check whether the user is logged in or not -->
-  <!-- {% if session['username'] %} -->
-  <!-- Paragraph to welcome the user and provide an option to log out -->
-  <!-- <p class="fs-5"> -->
-    <!-- Hi {{ session['username'] }}! Enjoy the site and <a href="{{ url_for('logout_page') }}">log out</a> when you're -->
-    <!-- done. -->
-  <!-- </p> -->
-  <!-- {% else %} -->
-  <!-- Paragraph to welcome the visitor and provide an option to log in -->
-  <!-- <p class="fs-5">Welcome, would you like to <a href="{{ url_for('login_page') }}">log in?</a></p> -->
-  <!-- {% endif %} -->
-
-  <!-- Conditional statement to check whether the avatar_url is available or not -->
-  <!-- {% if avatar_url %} -->
-  <!-- Image tag to display the user avatar if available -->
-  <!-- <img src="{{ avatar_url }}" alt="User Avatar" class="img-thumbnail"> -->
-  <!-- {% else %} -->
-  <!-- Optional: Placeholder for default avatar or any other content when the user is not logged in -->
-  <!-- Optional: Placeholder for default avatar or any other content when the user is not logged in -->
-  <!-- <img src="static/images/Company_Logo.png" alt="Company Logo" class="img-thumbnail reduced-size"> -->
-  <!-- {% endif %} -->
-
-  <!-- Heading for the Home Page -->
-  <!-- <h1>Welcome to Project Manager!</h1> -->
-
-  <!-- Optional: Any additional content, links, or features you want to add to the home page -->
-  <!-- <p>Explore our features, manage your projects effectively, and enhance your productivity.</p> -->
-
-
-
-</div> 
 {% endblock %}
