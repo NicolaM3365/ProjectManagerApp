@@ -23,6 +23,47 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// function searchProjects() {
+//     let input = document.getElementById('projectSearch').value.toLowerCase();
+//     let projectCards = document.getElementsByClassName('card');
 
+//     for (let i = 0; i < projectCards.length; i++) {
+//       let title = projectCards[i].querySelector('.card-title').textContent.toLowerCase();
+//       if (title.includes(input)) {
+//         projectCards[i].style.display = "";
+//       } else {
+//         projectCards[i].style.display = "none";
+//       }
+//     }
+//   }
+
+
+
+  function searchProjects() {
+    let input = document.getElementById('projectSearch').value.toLowerCase();
+
+    // Sending an AJAX request to the Flask server
+    fetch('/search?query=' + input)
+        .then(response => response.json())
+        .then(data => {
+            // Assuming 'data' is the list of projects returned from the server
+            updateProjectCards(data.projects);
+        });
+}
+
+function updateProjectCards(projects) {
+    // Clear existing project cards
+    let projectsContainer = document.getElementById('projects-container');
+    projectsContainer.innerHTML = '';
+
+    // Add new project cards based on the data received
+    projects.forEach(project => {
+        let cardHtml = `<div class="card">
+                            <div class="card-title">${project.name}</div>
+                            <div class="card-body">${project.description}</div>
+                        </div>`;
+        projectsContainer.innerHTML += cardHtml;
+    });
+}
 
 

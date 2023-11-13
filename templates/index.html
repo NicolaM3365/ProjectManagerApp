@@ -7,6 +7,29 @@
   <p class="text-secondary text-center mb-4">Explore our features, manage your projects effectively, and enhance your
     productivity.</p>
 
+  <!-- <div class="container my-4">
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" id="projectSearch" onkeyup="searchProjects()" placeholder="Search for projects..." class="form-control">
+        </div>
+      </div> -->
+  <!-- Project cards here -->
+  <!-- </div> -->
+
+  <div class="container my-4">
+    <div class="row mb-3">
+      <div class="col">
+        <input type="text" id="projectSearch" onkeyup="searchProjects()" placeholder="Search for projects..."
+          class="form-control">
+      </div>
+    </div>
+    <!-- Container for dynamically loaded project cards -->
+    <div id="projects-container" class="row">
+      <!-- Project cards will be inserted here by the JavaScript function -->
+    </div>
+  </div>
+
+
   <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
     <!-- Loop through projects -->
     {% for project in projects.items %}

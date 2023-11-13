@@ -1,7 +1,8 @@
 from statistics import median, mean
 
+# Your Flask app setup and routes go here
 
-from flask import Flask, flash, render_template, redirect, request, url_for, session
+from flask import Flask, jsonify, flash, render_template, redirect, request, url_for, session
 from flask_login import (
     LoginManager,
     login_user,
@@ -80,6 +81,60 @@ def index():
 # @app.route("/")
 # def index():
 #     return render_template("index.html", projects=Project.query.all())
+
+
+
+# @app.route("/", methods=["GET"])
+# def index():
+#     search_query = request.args.get('search', '')  # Get the search term from the query string
+#     page = request.args.get('page', 1, type=int)
+#     per_page = 8
+#     if search_query:
+#         projects = Project.query.filter(
+#             Project.name.like('%' + search_query + '%') |
+#             Project.description.like('%' + search_query + '%')
+#         ).paginate(page=page, per_page=per_page, error_out=False)
+#     else:
+#         projects = Project.query.paginate(page=page, per_page=per_page, error_out=False)
+#     return render_template("index.html", projects=projects, search_query=search_query)
+
+
+# @app.route("/search", methods=["GET"])
+# def search():
+#     search_query = request.args.get('query', '')
+
+#     # Assuming you have a Project model with name and description fields
+#     projects = Project.query.filter(
+#         Project.name.like('%' + search_query + '%') |
+#         Project.description.like('%' + search_query + '%')
+#     ).all()
+
+#     projects_data = [{'name': project.name, 'description': project.description} for project in projects]
+
+#     return jsonify({'projects': projects_data})
+
+
+@app.route("/search")
+def search():
+    search_query = request.args.get('query', '').strip()
+    page = request.args.get('page', 1, type=int)
+    per_page = 8  # Number of projects per page
+
+    query = Project.query
+    if search_query:
+        query = query.filter(
+            Project.name.ilike(f'%{search_query}%') | 
+            Project.description.ilike(f'%{search_query}%')
+        )
+
+    paginated_projects = query.paginate(page=page, per_page=per_page, error_out=False)
+
+    projects_data = [{'name': project.name, 'description': project.description} 
+                     for project in paginated_projects.items]
+
+    return jsonify({'projects': projects_data, 'has_next': paginated_projects.has_next})
+
+
 
 
 @app.route("/register", methods=["GET"])
