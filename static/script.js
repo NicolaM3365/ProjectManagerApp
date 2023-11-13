@@ -60,10 +60,9 @@ function updateProjectCards(projects) {
     projects.forEach(project => {
         let cardHtml = `<div class="card">
                             <div class="card-title">${project.name}</div>
+                            <a href="/project/${project.project_id}" class="card-title">${project.name}</a>
                             <div class="card-body">${project.description}</div>
                         </div>`;
         projectsContainer.innerHTML += cardHtml;
     });
 }
-
-

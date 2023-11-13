@@ -129,7 +129,7 @@ def search():
 
     paginated_projects = query.paginate(page=page, per_page=per_page, error_out=False)
 
-    projects_data = [{'name': project.name, 'description': project.description} 
+    projects_data = [{'project_id': project.project_id,'name': project.name, 'description': project.description} 
                      for project in paginated_projects.items]
 
     return jsonify({'projects': projects_data, 'has_next': paginated_projects.has_next})
