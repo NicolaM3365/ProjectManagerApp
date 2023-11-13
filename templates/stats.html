@@ -2,15 +2,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% if projects_exist %}
-        <p>Average: {{ average_length|round(2) }} characters</p>
-        <p>Median: {{ median_length|round(2) }} characters</p>
-        <p>Maximum: {{ max_length|round(2) }} characters</p>
-        <p>Minimum: {{ min_length|round(2) }} characters</p>
-        <br>
-        <p>Total length of all projects: {{ total_length|round(2) }} characters</p>
-    {% else %}
-        <p>No projects yet!</p>
-    {% endif %}
 
+
+        {% if projects_exist %}
+            <!-- <h2 class="mb-4">Project Statistics Overview</h2> -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card text-white bg-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Average Length</h5>
+                            <p class="card-text">{{ average_length|round(2) }} characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card text-white bg-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Median Length</h5>
+                            <p class="card-text">{{ median_length|round(2) }} characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card text-white bg-info">
+                        <div class="card-body">
+                            <h5 class="card-title">Maximum Length</h5>
+                            <p class="card-text">{{ max_length|round(2) }} characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card text-white bg-warning">
+                        <div class="card-body">
+                            <h5 class="card-title">Minimum Length</h5>
+                            <p class="card-text">{{ min_length|round(2) }} characters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Length of All Projects</h5>
+                    <p class="card-text">{{ total_length|round(2) }} characters</p>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                No projects yet!
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
