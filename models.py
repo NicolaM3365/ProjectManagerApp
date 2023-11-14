@@ -64,6 +64,7 @@ class Project(db.Model):
         created_at = db.mapped_column(db.DateTime, default=datetime.utcnow)
         managed_project_id = db.mapped_column(db.Integer, db.ForeignKey('users.id'), nullable=False)
         managed_project = db.relationship('User', backref=db.backref('projects', lazy=True))
+        
 
         def add_task(self, task):
             self.tasks.append(task)
@@ -79,7 +80,23 @@ class Project(db.Model):
             # An example of how to use raw SQL inside a model
             sql = text("SELECT length(name) + length(description) FROM projects")
             return db.session.execute(sql).scalars().all()  # Returns just the integers
+        
+        
+        @staticmethod
+        def projects_per_month():
+            sql = text("""
+            SELECT EXTRACT(YEAR FROM created_at) as year, 
+            EXTRACT(MONTH FROM created_at) as month, 
+            COUNT(*) 
+            FROM projects 
+            GROUP BY year, month
+            ORDER BY year, month;
+            """)
+            return db.session.execute(sql).all()
 
+        @staticmethod
+        def recent_projects(limit=5):
+            return Project.query.order_by(Project.created_at.desc()).limit(limit).all()
 
 
         

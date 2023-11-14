@@ -43,7 +43,7 @@
                 <td>{{ task.assigned_to }}</td>
 
                 <td>
-                    <a href="{{ url_for('edit_task_page', project_id=project.project_id, task_id=task.task_id) }}"
+                    <a href="{{ url_for('edit_task', project_id=project.project_id, task_id=task.task_id) }}"
                         class="btn btn-info">Edit</a>
                 </td>
                 <td>

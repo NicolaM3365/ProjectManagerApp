@@ -46,6 +46,37 @@
                     <p class="card-text">{{ total_length|round(2) }} characters</p>
                 </div>
             </div>
+  
+            
+
+                <!-- New Section: Projects Per Month -->
+                <div class="col-12 my-3">
+                    <div class="card h-100">
+                        <div class="card-header bg-secondary text-white">
+                            Projects Per Month
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for year, month, count in projects_per_month %}
+                                <li class="list-group-item">{{ year }}-{{ '%02d'|format(month) }}: {{ count }} projects</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- New Section: Recent Projects -->
+                <div class="col-12 my-3">
+                    <div class="card h-100">
+                        <div class="card-header bg-secondary text-white">
+                            Recent Projects
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for project in recent_projects %}
+                                <li class="list-group-item">{{ project.name }} - Created on {{ project.created_at.strftime('%Y-%m-%d') }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         {% else %}
             <div class="alert alert-info" role="alert">
                 No projects yet!
@@ -53,3 +84,9 @@
         {% endif %}
     </div>
 {% endblock %}
+
+
+
+
+
+

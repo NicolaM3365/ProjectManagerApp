@@ -62,6 +62,9 @@ function updateProjectCards(projects) {
                             <div class="card-title">${project.name}</div>
                             <a href="/project/${project.project_id}" class="card-title">${project.name}</a>
                             <div class="card-body">${project.description}</div>
+                            <div class="card-footer">${project.status}
+                            <br>
+                            ${project.managed_project}</div>
                         </div>`;
         projectsContainer.innerHTML += cardHtml;
     });

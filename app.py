@@ -124,16 +124,21 @@ def search():
     if search_query:
         query = query.filter(
             Project.name.ilike(f'%{search_query}%') | 
-            Project.description.ilike(f'%{search_query}%')
+            Project.description.ilike(f'%{search_query}%') |
+            Project.status.ilike(f'%{search_query}%') |
+            Project.managed_project.has(User.username.ilike(f'%{search_query}%'))
         )
 
     paginated_projects = query.paginate(page=page, per_page=per_page, error_out=False)
 
-    projects_data = [{'project_id': project.project_id,'name': project.name, 'description': project.description} 
+    projects_data = [{'project_id': project.project_id,
+                      'name': project.name,
+                      'description': project.description,
+                      'status': project.status,
+                      'managed_project': project.managed_project.username if project.managed_project else None}
                      for project in paginated_projects.items]
 
     return jsonify({'projects': projects_data, 'has_next': paginated_projects.has_next})
-
 
 
 
@@ -339,9 +344,81 @@ def delete_action(project_id):
     return redirect(url_for("index"))
 
 
+
+
+
+
+# Assuming Task model is defined and linked to Project
+
+@app.route("/edit_task/<int:project_id>/<int:task_id>", methods=["GET"])
+@login_required
+def edit_task_page(project_id, task_id):
+    task = Task.query.get_or_404(project_id, task_id)
+    project = task.project
+    if not allow_edit(project):
+        flash(f"Only the project's manager ({project.managed_project}) is allowed to edit its tasks")
+        return redirect(url_for("project", project_id=project.project_id))
+
+    return render_template("edit_task.html", task=task)
+
+@app.route("/edit_task/<int:project_id>/<int:task_id>", methods=["POST"])
+@login_required
+def edit_task_action(project_id, task_id):
+    task = Task.query.get_or_404(project_id, task_id)
+    project = task.project
+    if not allow_edit(project):
+        flash(f"Only the project's manager ({project.managed_project}) is allowed to edit its tasks")
+        return redirect(url_for("project", project_id=project.project_id))
+
+    task.name = request.form["name"]
+    task.description = request.form["description"]
+    # Add other task fields as needed
+    db.session.commit()
+    return redirect(url_for("project", project_id=project.project_id))
+
+# Add similar routes for task deletion if necessary
+
+@app.route("/delete_task/<int:task_id>", methods=["GET"])
+@login_required
+def delete_task_page(task_id):
+    task = Task.query.get_or_404(task_id)
+    project = task.project
+    if not allow_edit(project):
+        flash(f"Only this project's manager ({project.managed_project}) is allowed to delete its tasks")
+        return redirect(url_for("project", project_id=project.project_id))
+
+    return render_template("delete_task.html", task=task, project=project)
+
+
+@app.route("/delete_task/<int:task_id>", methods=["POST"])
+@login_required
+def delete_task_action(task_id):
+    task = Task.query.get_or_404(task_id)
+    project = task.project
+    if not allow_edit(project):
+        flash(f"Only this project's manager ({project.managed_project}) is allowed to delete its tasks")
+        return redirect(url_for("project", project_id=project.project_id))
+
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for("project", project_id=project.project_id))
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/stats")
 def stats():
     project_lengths = Project.get_project_lengths()
+    projects_per_month = Project.projects_per_month()  # Assuming this method is defined in your Project model
+    recent_projects = Project.recent_projects()        # Assuming this method is defined in your Project model
 
     if project_lengths:
         return render_template(
@@ -352,11 +429,18 @@ def stats():
             max_length=max(project_lengths),
             min_length=min(project_lengths),
             total_length=sum(project_lengths),
+            projects_per_month=projects_per_month,  # Add this line to pass the data to your template
+            recent_projects=recent_projects         # Add this line to pass the data to your template
         )
     else:
-        return render_template("stats.html", projects_exist=False)
-    
-    
+        return render_template(
+            "stats.html", 
+            projects_exist=False,
+            projects_per_month=projects_per_month,  # Add this line to pass the data to your template
+            recent_projects=recent_projects         # Add this line to pass the data to your template
+        )
+
+
     
 
     

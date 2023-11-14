@@ -41,10 +41,17 @@
             <a href="{{ url_for('project', project_id=project.project_id) }}"
               class="stretched-link text-decoration-none text-dark">{{ project.name }}</a>
           </h5>
-          <p class="card-text">{{ project.description }}</p>
+          <p class="card-text">
+            {{ project.description }}
+            {% if project.managed_project %}
+
+            {% endif %}
+        </p>
         </div>
         <div class="card-footer bg-white">
           <small class="text-muted">Status: <span class="text-success">{{ project.status }}</span></small>
+          <br>          
+          <small class="text-muted">Managed by: <span class="text-success">{{ project.managed_project.name }}</span></small>
         </div>
       </div>
     </div>
