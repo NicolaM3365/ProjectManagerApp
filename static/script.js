@@ -1,44 +1,4 @@
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Get reference to the dropdown filter and table rows
-    const statusFilter = document.getElementById('statusFilter');
-    const tableRows = document.querySelectorAll("#taskTable tbody tr");
-
-    if (statusFilter) {
-        // Attach event listener to the dropdown filter
-        statusFilter.addEventListener("change", function() {
-            const selectedStatus = statusFilter.value;
-
-            tableRows.forEach(function(row) {
-                const statusCell = row.querySelector(".task-status");
-                if (!selectedStatus || statusCell.innerText === selectedStatus) {
-                    row.style.display = ""; // show the row
-                } else {
-                    row.style.display = "none"; // hide the row
-                }
-            });
-        });
-    } else {
-        console.error("Element with ID 'statusFilter' not found!");
-    }
-});
-
-// function searchProjects() {
-//     let input = document.getElementById('projectSearch').value.toLowerCase();
-//     let projectCards = document.getElementsByClassName('card');
-
-//     for (let i = 0; i < projectCards.length; i++) {
-//       let title = projectCards[i].querySelector('.card-title').textContent.toLowerCase();
-//       if (title.includes(input)) {
-//         projectCards[i].style.display = "";
-//       } else {
-//         projectCards[i].style.display = "none";
-//       }
-//     }
-//   }
-
-
-
   function searchProjects() {
     let input = document.getElementById('projectSearch').value.toLowerCase();
 
@@ -69,3 +29,28 @@ function updateProjectCards(projects) {
         projectsContainer.innerHTML += cardHtml;
     });
 }
+
+// TODO
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Get reference to the dropdown filter and table rows
+//     const statusFilter = document.getElementById('statusFilter');
+//     const tableRows = document.querySelectorAll("#taskTable tbody tr");
+
+//     if (statusFilter) {
+//         // Attach event listener to the dropdown filter
+//         statusFilter.addEventListener("change", function() {
+//             const selectedStatus = statusFilter.value;
+
+//             tableRows.forEach(function(row) {
+//                 const statusCell = row.querySelector(".task-status");
+//                 if (!selectedStatus || statusCell.innerText === selectedStatus) {
+//                     row.style.display = ""; // show the row
+//                 } else {
+//                     row.style.display = "none"; // hide the row
+//                 }
+//             });
+//         });
+//     } else {
+//         console.error("Element with ID 'statusFilter' not found!");
+//     }
+// });
