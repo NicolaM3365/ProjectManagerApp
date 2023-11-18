@@ -38,7 +38,7 @@ class User(UserMixin, db.Model):
 
 class Task(db.Model):
         __tablename__ = 'tasks'  # specify the table name explicitly
-        task_id = db.mapped_column(db.Integer, primary_key=True)
+        task_id = db.mapped_column(db.Integer, primary_key=True, autoincrement=True)
         name = db.mapped_column(db.String(100), nullable=False)
         description = db.mapped_column(db.String(100), nullable=False)
         status = db.mapped_column(db.String(100), nullable=False)

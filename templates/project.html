@@ -1,33 +1,36 @@
-
 {% extends 'base.html' %}
 {% set title = project.name %}
 
 {% block content %}
-    <h1>{{ project.name }}</h1>
-    <p>Managed by: {{ project.managed_project.username }}</p>
-    <p>Created on: {{ project.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
-    <p>{{ project.description }}</p>
+  <h1>{{ project.name }}</h1>
+  <p>Managed by: {{ project.managed_project.username }}</p>
+  <p>Created on: {{ project.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+  <p>{{ project.description }}</p>
 
-    <h2>Tasks</h2>
-    {% if project.tasks %}
-        <ul>
-            {% for task in project.tasks %}
-                <li>
-                    <strong>{{ task.name }}</strong> - {{ task.description }}
-                    <br>Status: {{ task.status }}
-                    <br>Assigned to: {{ task.managed_task.username }}
-                    {% if allow_edit %}
-                        <!-- Edit Task Button -->
-                        <br><a href="{{ url_for('edit_task_action', project_id=project.project_id, task_id=task.task_id) }}">Edit Task</a>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No tasks found for this project.</p>
-    {% endif %}
+  <h2>Tasks</h2>
+  {% if project.tasks %}
+    <ul>
+      {% for task in project.tasks %}
+        <li class="task-item">
+          <strong>{{ task.name }}</strong> - {{ task.description }}
+          <br />Status: {{ task.status }}
+          <br />Assigned to: {{ task.managed_task.username }}
+          {% if allow_edit %}
+            <div class="task-actions">
+              <a href="{{ url_for('edit_task_action', project_id = project.project_id, task_id = task.task_id) }}" class="btn btn-edit">Edit Task</a>
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tasks found for this project.</p>
+  {% endif %}
 
-    {% if allow_edit %}
-        <a href="{{ url_for('edit_page', project_id=project.project_id) }}">Edit Project</a>
-    {% endif %}
+  {% if allow_edit %}
+    <div class="project-actions">
+      <a href="{{ url_for('edit_page', project_id = project.project_id) }}" class="btn btn-edit">Edit Project</a>
+      <a href="{{ url_for('create_task_page', project_id = project.project_id) }}" class="btn btn-add">Add New Task</a>
+    </div>
+  {% endif %}
 {% endblock %}

@@ -292,6 +292,36 @@ def delete_task_action(task_id):
     db.session.commit()
     return redirect(url_for("project", project_id=project.project_id))
 
+@app.route("/add_task/<int:project_id>", methods=["GET"])
+@login_required
+def create_task_page(project_id):
+    project = Project.query.get_or_404(project_id)
+    if not allow_edit(project):
+        flash(f"Only the task's manager ({project.managed_project}) is allowed to add tasks")
+        return redirect(url_for("project", project_id=project.project_id))
+
+    return render_template("add_task.html", project=project)
+
+@app.route("/add_task/<int:project_id>", methods=["POST"])
+@login_required
+def create_task_action(project_id):
+    project = Project.query.get_or_404(project_id)
+    if not allow_edit(project):
+        flash(f"Only the task's manager ({project.managed_project}) is allowed to add tasks")
+        return redirect(url_for("project", project_id=project.project_id))
+
+    new_task = Task(
+        name=request.form["name"],
+        description=request.form["description"],
+        status=request.form["status"],
+        managed_task=current_user,
+        
+        # Set other fields as needed
+        project_id=project_id
+    )
+    db.session.add(new_task)
+    db.session.commit()
+    return redirect(url_for("project", project_id=project.project_id))
 
 
 
